@@ -2,27 +2,13 @@
 
 # compiled output
 /dist
+/dist-server
 /tmp
 /out-tsc
+dist.tgz
 
 # dependencies
-node_modules
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+/node_modules
 
 # misc
 /.sass-cache
@@ -34,8 +20,13 @@ yarn-error.log
 testem.log
 /typings
 
+# e2e
+/e2e/src/*.js
+/e2e/src/*.map
+
 # System Files
 .DS_Store
 Thumbs.db
 
-.angular
+
+/ckeditor/build
