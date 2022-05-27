@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'editor',
+  displayName: 'samples',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/editor',
+  coverageDirectory: '../../coverage/apps/samples',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

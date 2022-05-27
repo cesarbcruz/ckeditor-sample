@@ -2,7 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "editor": "apps/editor",
-    "editor-e2e": "apps/editor-e2e"
+    "common-ui": "libs/common-ui",
+    "editor-e2e": "apps/editor-e2e",
+    "samples": "apps/samples"
   }
 }

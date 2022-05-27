@@ -7,11 +7,11 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/editor-e2e/cypress.json",
-        "devServerTarget": "editor:serve:development"
+        "devServerTarget": "samples:serve:development"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "editor:serve:production"
+          "devServerTarget": "samples:serve:production"
         }
       }
     },
@@ -24,5 +24,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["editor"]
+  "implicitDependencies": ["samples"]
 }

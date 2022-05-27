@@ -8,7 +8,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "build-ckeditor": "cd ckeditor5 && npm install && npm run build"
+    "build-ckeditor": "cd libs/third/ckeditor5 && npm install && npm run build"
   },
   "private": true,
   "dependencies": {
