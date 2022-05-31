@@ -43,117 +43,149 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat.js';
+import LineHeightCommand from './plugins/line-height/lineheightcommand';
+import LineHeight from './plugins/line-height/lineheight';
 
-class Editor extends DecoupledDocumentEditor {}
+
+
+class Editor extends DecoupledDocumentEditor { }
 
 // Plugins to include in the build.
 Editor.builtinPlugins = [
-	Alignment,
-	Autoformat,
-	BlockQuote,
-	Bold,
-	CKFinder,
-	CKFinderUploadAdapter,
-	CloudServices,
-	Essentials,
-	ExportPdf,
-	ExportWord,
-	FontBackgroundColor,
-	FontColor,
-	FontFamily,
-	FontSize,
-	Heading,
-	Image,
-	ImageCaption,
-	ImageResize,
-	ImageStyle,
-	ImageToolbar,
-	ImageUpload,
-	Indent,
-	IndentBlock,
-	Italic,
-	Link,
-	List,
-	ListProperties,
-	MediaEmbed,
-	PageBreak,
-	Pagination,
-	Paragraph,
-	PasteFromOffice,
-	Strikethrough,
-	Table,
-	TableCellProperties,
-	TableProperties,
-	TableToolbar,
-	TextTransformation,
-	TodoList,
-	Underline
+  RemoveFormat,
+  Alignment,
+  Autoformat,
+  BlockQuote,
+  Bold,
+  CKFinder,
+  CKFinderUploadAdapter,
+  CloudServices,
+  Essentials,
+  ExportPdf,
+  ExportWord,
+  FontBackgroundColor,
+  FontColor,
+  FontFamily,
+  FontSize,
+  Heading,
+  Image,
+  ImageCaption,
+  ImageResize,
+  ImageStyle,
+  ImageToolbar,
+  ImageUpload,
+  Indent,
+  IndentBlock,
+  Italic,
+  Link,
+  List,
+  ListProperties,
+  MediaEmbed,
+  PageBreak,
+  Pagination,
+  Paragraph,
+  PasteFromOffice,
+  Strikethrough,
+  Table,
+  TableCellProperties,
+  TableProperties,
+  TableToolbar,
+  TextTransformation,
+  TodoList,
+  Underline,
+  LineHeight
 ];
 
 // Editor configuration.
 Editor.defaultConfig = {
-	toolbar: {
-		items: [
-			'heading',
-			'|',
-			'fontSize',
-			'fontFamily',
-			'|',
-			'fontColor',
-			'fontBackgroundColor',
-			'|',
-			'bold',
-			'italic',
-			'underline',
-			'strikethrough',
-			'|',
-			'alignment',
-			'|',
-			'numberedList',
-			'bulletedList',
-			'|',
-			'outdent',
-			'indent',
-			'|',
-			'todoList',
-			'link',
-			'blockQuote',
-			'imageUpload',
-			'insertTable',
-			'mediaEmbed',
-			'|',
-			'undo',
-			'redo'
-		]
-	},
-	language: 'pt-br',
-	image: {
-		toolbar: [
-			'imageTextAlternative',
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side'
-		]
-	},
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells',
-			'tableCellProperties',
-			'tableProperties'
-		]
-	},
-	pagination: {
-		pageWidth: '21cm',
-		pageHeight: '29.7cm',
-		pageMargins: {
-			top: '20mm',
-			bottom: '20mm',
-			left: '12mm',
-			right: '12mm'
-		}
-	}
+  fontSize: {
+    options: [
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      'default',
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      36
+    ]
+  },
+  lineHeight: {
+    options: [0.5, 1, 1.5, 2, 2.5]
+  },
+  toolbar: {
+    items: [
+      'heading',
+      '|',
+      'fontSize',
+      'fontFamily',
+      '|',
+      'fontColor',
+      'fontBackgroundColor',
+      '|',
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough',
+      'removeFormat',
+      '|',
+      'lineHeight',
+      '|',
+      'alignment',
+      '|',
+      'numberedList',
+      'bulletedList',
+      '|',
+      'outdent',
+      'indent',
+      '|',
+      'todoList',
+      'link',
+      'blockQuote',
+      'imageUpload',
+      'insertTable',
+      'mediaEmbed',
+      '|',
+      'undo',
+      'redo'
+    ]
+  },
+  language: 'pt-br',
+  image: {
+    toolbar: [
+      'imageTextAlternative',
+      'imageStyle:inline',
+      'imageStyle:block',
+      'imageStyle:side'
+    ]
+  },
+  table: {
+    contentToolbar: [
+      'tableColumn',
+      'tableRow',
+      'mergeTableCells',
+      'tableCellProperties',
+      'tableProperties'
+    ]
+  },
+  pagination: {
+    pageWidth: '21cm',
+    pageHeight: '29.7cm',
+    pageMargins: {
+      top: '20mm',
+      bottom: '20mm',
+      left: '12mm',
+      right: '12mm'
+    }
+  }
 };
 
 export default Editor;
