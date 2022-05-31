@@ -9,7 +9,8 @@ dist.tgz
 .angular
 
 # dependencies
-/node_modules
+node_modules
+
 
 # misc
 /.sass-cache
