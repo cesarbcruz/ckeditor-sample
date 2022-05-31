@@ -52,6 +52,8 @@ import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandrepl
 import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
 import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
 import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+
 
 
 class Editor extends DecoupledDocumentEditor { }
@@ -106,7 +108,8 @@ Editor.builtinPlugins = [
   FindAndReplace,
   Subscript,
   Superscript,
-  Code
+  Code,
+  HorizontalLine
 ];
 
 // Editor configuration.
@@ -162,6 +165,7 @@ Editor.defaultConfig = {
       'outdent',
       'indent',
       '|',
+      'horizontalLine',
       'specialCharacters',
       'todoList',
       'link',
@@ -172,7 +176,8 @@ Editor.defaultConfig = {
       '|',
       'undo',
       'redo',
-      'findAndReplace'
+      'findAndReplace',
+      'pageBreak'
     ]
   },
   language: 'pt-br',
