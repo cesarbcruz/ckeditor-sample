@@ -47,6 +47,7 @@ import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat.js'
 import LineHeight from './plugins/line-height/lineheight';
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 
 
@@ -97,7 +98,8 @@ Editor.builtinPlugins = [
   Underline,
   LineHeight,
   SpecialCharacters,
-  SpecialCharactersEssentials
+  SpecialCharactersEssentials,
+  Base64UploadAdapter
 ];
 
 // Editor configuration.
