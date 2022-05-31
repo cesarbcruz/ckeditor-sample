@@ -1,4 +1,4 @@
-import { CommonUiModule } from './../../../../libs/common-ui/src/lib/common-ui.module';
+import { CommonUiModule } from '@ckeditor-sample/common-ui';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
