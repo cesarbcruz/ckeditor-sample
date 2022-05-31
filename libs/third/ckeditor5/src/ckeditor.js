@@ -48,7 +48,7 @@ import LineHeight from './plugins/line-height/lineheight';
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
-
+import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandreplace';
 
 
 class Editor extends DecoupledDocumentEditor { }
@@ -99,7 +99,8 @@ Editor.builtinPlugins = [
   LineHeight,
   SpecialCharacters,
   SpecialCharactersEssentials,
-  Base64UploadAdapter
+  Base64UploadAdapter,
+  FindAndReplace
 ];
 
 // Editor configuration.
@@ -161,7 +162,8 @@ Editor.defaultConfig = {
       'mediaEmbed',
       '|',
       'undo',
-      'redo'
+      'redo',
+      'findAndReplace'
     ]
   },
   language: 'pt-br',
