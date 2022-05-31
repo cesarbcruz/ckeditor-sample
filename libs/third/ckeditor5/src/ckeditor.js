@@ -49,6 +49,9 @@ import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specia
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandreplace';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 
 
 class Editor extends DecoupledDocumentEditor { }
@@ -100,7 +103,10 @@ Editor.builtinPlugins = [
   SpecialCharacters,
   SpecialCharactersEssentials,
   Base64UploadAdapter,
-  FindAndReplace
+  FindAndReplace,
+  Subscript,
+  Superscript,
+  Code
 ];
 
 // Editor configuration.
@@ -141,6 +147,9 @@ Editor.defaultConfig = {
       'italic',
       'underline',
       'strikethrough',
+      'subscript',
+      'superscript',
+      'code',
       'removeFormat',
       '|',
       'lineHeight',
