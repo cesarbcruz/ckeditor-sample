@@ -177,7 +177,15 @@ Editor.defaultConfig = {
       'undo',
       'redo',
       'findAndReplace',
-      'pageBreak'
+      ,
+      '|',
+      'exportPdf',
+      'exportWord',
+      '|',
+      'pageBreak',
+      'previousPage',
+      'nextPage',
+      'pageNavigation'
     ]
   },
   language: 'pt-br',
@@ -206,6 +214,33 @@ Editor.defaultConfig = {
       bottom: '20mm',
       left: '12mm',
       right: '12mm'
+    }
+  },
+  exportPdf: {
+    stylesheets: [
+      'EDITOR_STYLES'
+    ],
+    fileName: 'documento.pdf',
+    converterOptions: {
+      format: 'A4',
+      margin_top: '20mm',
+      margin_bottom: '20mm',
+      margin_right: '12mm',
+      margin_left: '12mm',
+      page_orientation: 'portrait'
+    }
+  },
+  exportWord: {
+    stylesheets: [
+      'EDITOR_STYLES'
+    ],
+    fileName: 'documento.docx',
+    converterOptions: {
+      format: 'A4',
+      margin_top: '20mm',
+      margin_bottom: '20mm',
+      margin_right: '12mm',
+      margin_left: '12mm'
     }
   }
 };
