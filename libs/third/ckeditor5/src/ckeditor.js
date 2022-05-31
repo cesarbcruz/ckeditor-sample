@@ -44,8 +44,9 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
 import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat.js';
-import LineHeightCommand from './plugins/line-height/lineheightcommand';
 import LineHeight from './plugins/line-height/lineheight';
+import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
+import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 
 
 
@@ -94,7 +95,9 @@ Editor.builtinPlugins = [
   TextTransformation,
   TodoList,
   Underline,
-  LineHeight
+  LineHeight,
+  SpecialCharacters,
+  SpecialCharactersEssentials
 ];
 
 // Editor configuration.
@@ -147,6 +150,7 @@ Editor.defaultConfig = {
       'outdent',
       'indent',
       '|',
+      'specialCharacters',
       'todoList',
       'link',
       'blockQuote',
