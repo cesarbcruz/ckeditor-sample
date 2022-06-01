@@ -20,7 +20,8 @@ import * as Editor from '../../../../third/ckeditor5/build/ckeditor';
 export class TextEditorComponent implements OnInit {
   @Input()
   itemsMention: MentionModel[] = [];
-
+  @Input()
+  licenseKey = 'To5uX5zzBTbtyXnzqMnXKbYkPnAk8wwHE41JiXujwbMCsEiebiFhaodl6A==';
   @Output() changeContent = new EventEmitter<string>();
 
   constructor(
@@ -32,7 +33,7 @@ export class TextEditorComponent implements OnInit {
 
   public Editor: any;
   public config = {
-    licenseKey: 'To5uX5zzBTbtyXnzqMnXKbYkPnAk8wwHE41JiXujwbMCsEiebiFhaodl6A==',
+    licenseKey: this.licenseKey,
     mention: {
       feeds: [
         {
