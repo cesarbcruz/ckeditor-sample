@@ -1,6 +1,15 @@
+import { MentionModel } from './model/mention.model';
+import { MentionService } from './services/mention.service';
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import * as Editor from '../../../../third/ckeditor5/build/ckeditor';
 
 @Component({
@@ -9,18 +18,17 @@ import * as Editor from '../../../../third/ckeditor5/build/ckeditor';
   styleUrls: ['./text-editor.component.less'],
 })
 export class TextEditorComponent implements OnInit {
+  @Input()
+  itemsMention: MentionModel[] = [];
+
   @Output() changeContent = new EventEmitter<string>();
 
-  public itemsMention = [
-    {
-      id: '@exemplo1',
-      content:'<b>Exemplo 1</b>',
-    },
-    {
-      id: '@exemplo2',
-      content:'<b>Exemplo 2</b>',
-    },
-  ];
+  constructor(
+    private mentionService: MentionService,
+    private elementRef: ElementRef
+  ) {
+    mentionService.setItems(this.itemsMention);
+  }
 
   public Editor: any;
   public config = {
@@ -29,7 +37,7 @@ export class TextEditorComponent implements OnInit {
       feeds: [
         {
           marker: '@',
-          feed: this.getFeedItems.bind(this)
+          feed: this.mentionService.getFeedItems.bind(this),
         },
       ],
     },
@@ -37,11 +45,11 @@ export class TextEditorComponent implements OnInit {
 
   ngOnInit(): void {
     Editor.create(
-      document.querySelector('.document-editor__editable'),
+      this.elementRef.nativeElement.querySelector('.document-editor__editable'),
       this.config
     )
       .then((editor: any) => {
-        const toolbarContainer = document.querySelector(
+        const toolbarContainer = this.elementRef.nativeElement.querySelector(
           '.document-editor__toolbar'
         );
         if (toolbarContainer)
@@ -60,23 +68,5 @@ export class TextEditorComponent implements OnInit {
     this.Editor.model.document.on('change:data', () => {
       this.changeContent.emit(this.Editor.getData());
     });
-  }
-
-  getFeedItems(queryText: any) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const itemsToDisplay = this.itemsMention
-          .filter(isItemMatching)
-          .slice(0, 10);
-        resolve(itemsToDisplay);
-      }, 100);
-    });
-
-    function isItemMatching(item: any) {
-      const searchString = queryText.toLowerCase();
-      return (
-        item.id.toLowerCase().includes(searchString)
-      );
-    }
   }
 }

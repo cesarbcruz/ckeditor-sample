@@ -111,7 +111,7 @@ Editor.builtinPlugins = [
   Superscript,
   Code,
   HorizontalLine,
-  Mention
+  Mention, MentionLinks
 ];
 
 // Editor configuration.
@@ -245,5 +245,23 @@ Editor.defaultConfig = {
     }
   }
 };
+
+function MentionLinks( editor ) {
+  editor.conversion.for( 'upcast' ).elementToAttribute( {
+       view: {
+           name: 'a',
+           key: 'data-mention',
+           classes: 'mention',
+           attributes: {
+               href: false
+           }
+       },
+       model: {
+           key: 'mention',
+           value: viewItem => editor.plugins.get( 'Mention' ).toMentionAttribute( viewItem )
+       },
+       converterPriority: 'high'
+   } );
+  }
 
 export default Editor;
