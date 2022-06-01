@@ -177,7 +177,6 @@ Editor.defaultConfig = {
       'undo',
       'redo',
       'findAndReplace',
-      ,
       '|',
       'exportPdf',
       'exportWord',
