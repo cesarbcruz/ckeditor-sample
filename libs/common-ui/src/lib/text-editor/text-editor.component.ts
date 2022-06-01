@@ -22,6 +22,8 @@ export class TextEditorComponent implements OnInit {
   itemsMention: MentionModel[] = [];
   @Input()
   licenseKey = 'To5uX5zzBTbtyXnzqMnXKbYkPnAk8wwHE41JiXujwbMCsEiebiFhaodl6A==';
+  @Input()
+  content = '';
   @Output() changeContent = new EventEmitter<string>();
 
   constructor(
@@ -57,6 +59,8 @@ export class TextEditorComponent implements OnInit {
           toolbarContainer.appendChild(editor.ui.view.toolbar.element);
 
         this.Editor = editor;
+
+        this.Editor.setData(this.content);
 
         this.configureEvents();
       })
