@@ -9,13 +9,30 @@ import * as Editor from '../../../../third/ckeditor5/build/ckeditor';
   styleUrls: ['./text-editor.component.less'],
 })
 export class TextEditorComponent implements OnInit {
-
   @Output() changeContent = new EventEmitter<string>();
 
+  public itemsMention = [
+    {
+      id: '@exemplo1',
+      content:'<b>Exemplo 1</b>',
+    },
+    {
+      id: '@exemplo2',
+      content:'<b>Exemplo 2</b>',
+    },
+  ];
 
   public Editor: any;
   public config = {
     licenseKey: 'To5uX5zzBTbtyXnzqMnXKbYkPnAk8wwHE41JiXujwbMCsEiebiFhaodl6A==',
+    mention: {
+      feeds: [
+        {
+          marker: '@',
+          feed: this.getFeedItems.bind(this)
+        },
+      ],
+    },
   };
 
   ngOnInit(): void {
@@ -45,4 +62,21 @@ export class TextEditorComponent implements OnInit {
     });
   }
 
+  getFeedItems(queryText: any) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const itemsToDisplay = this.itemsMention
+          .filter(isItemMatching)
+          .slice(0, 10);
+        resolve(itemsToDisplay);
+      }, 100);
+    });
+
+    function isItemMatching(item: any) {
+      const searchString = queryText.toLowerCase();
+      return (
+        item.id.toLowerCase().includes(searchString)
+      );
+    }
+  }
 }

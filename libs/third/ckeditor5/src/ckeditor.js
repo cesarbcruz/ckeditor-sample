@@ -53,10 +53,11 @@ import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
 import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
 import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
-
+import Mention from '@ckeditor/ckeditor5-mention/src/mention';
 
 
 class Editor extends DecoupledDocumentEditor { }
+
 
 // Plugins to include in the build.
 Editor.builtinPlugins = [
@@ -109,7 +110,8 @@ Editor.builtinPlugins = [
   Subscript,
   Superscript,
   Code,
-  HorizontalLine
+  HorizontalLine,
+  Mention
 ];
 
 // Editor configuration.
