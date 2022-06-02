@@ -1,4 +1,4 @@
-import { MentionService } from './text-editor/services/mention.service';
+import { MentionService } from './text-editor/plugin/mention/mention.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextEditorComponent } from './text-editor/text-editor.component';

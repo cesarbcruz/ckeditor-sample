@@ -1,4 +1,4 @@
-import { MentionModel } from './../model/mention.model';
+import { MentionModel } from './mention.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({

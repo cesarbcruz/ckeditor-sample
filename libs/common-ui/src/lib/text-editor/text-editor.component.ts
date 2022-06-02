@@ -1,10 +1,9 @@
-import { MentionModel } from './model/mention.model';
-import { MentionCommand } from './model/mention-command.model';
-
-import { MentionService } from './services/mention.service';
-
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { MentionModel } from './plugin/mention/mention.model';
+import { MentionCommand } from './plugin/mention/mention-command';
+import { MentionService } from './plugin/mention/mention.service';
+
 import {
   Component,
   ElementRef,

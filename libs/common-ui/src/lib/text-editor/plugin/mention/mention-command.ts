@@ -8,6 +8,6 @@ export class MentionCommand {
   execute(param:any){
       const viewFragment = this.editor$.data.processor.toView( param.text );
       const modelFragment = this.editor$.data.toModel( viewFragment );
-      this.editor$.model.insertContent( modelFragment );
+      this.editor$.model.insertContent( modelFragment, param.range);
   }
 }
