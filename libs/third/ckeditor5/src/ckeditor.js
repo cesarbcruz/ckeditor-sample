@@ -111,7 +111,7 @@ Editor.builtinPlugins = [
   Superscript,
   Code,
   HorizontalLine,
-  Mention, MentionLinks
+  Mention, MentionCustomization
 ];
 
 // Editor configuration.
@@ -246,22 +246,65 @@ Editor.defaultConfig = {
   }
 };
 
-function MentionLinks( editor ) {
-  editor.conversion.for( 'upcast' ).elementToAttribute( {
-       view: {
-           name: 'a',
-           key: 'data-mention',
-           classes: 'mention',
-           attributes: {
-               href: false
-           }
-       },
-       model: {
-           key: 'mention',
-           value: viewItem => editor.plugins.get( 'Mention' ).toMentionAttribute( viewItem )
-       },
-       converterPriority: 'high'
-   } );
-  }
+function MentionLinks(editor) {
+  editor.conversion.for('upcast').elementToAttribute({
+    view: {
+      name: 'a',
+      key: 'data-mention',
+      classes: 'mention',
+      attributes: {
+        href: false
+      }
+    },
+    model: {
+      key: 'mention',
+      value: viewItem => editor.plugins.get('Mention').toMentionAttribute(viewItem)
+    },
+    converterPriority: 'high'
+  });
+}
+
+function MentionCustomization(editor) {
+  // The upcast converter will convert view <a class="mention" href="" data-user-id="">
+  // elements to the model 'mention' text attribute.
+  editor.conversion.for('upcast').elementToAttribute({
+    view: {
+      name: 'a',
+      key: 'data-mention',
+      classes: 'mention',
+    },
+    model: {
+      key: 'mention',
+      value: viewItem => {
+        // The mention feature expects that the mention attribute value
+        // in the model is a plain object with a set of additional attributes.
+        // In order to create a proper object use the toMentionAttribute() helper method:
+        const mentionAttribute = editor.plugins.get('Mention').toMentionAttribute(viewItem, {
+          // Add any other properties that you need.
+          text: viewItem.value
+        });
+
+        return mentionAttribute;
+      }
+    },
+    converterPriority: 'high'
+  });
+
+  // Downcast the model 'mention' text attribute to a view <a> element.
+	editor.conversion.for( 'downcast' ).attributeToElement( {
+		model: 'mention',
+		view: ( modelAttributeValue, {writer} ) => {
+			// Do not convert empty attributes (lack of value means no mention).
+			if ( !modelAttributeValue ) {
+				return;
+			}
+
+			return writer.createAttributeElement( 'a', {
+				'id': modelAttributeValue.id
+			} );
+		},
+		converterPriority: 'high'
+	} );
+}
 
 export default Editor;

@@ -14,7 +14,7 @@ import example3 from './mock/Word_COPY'
 })
 export class AppComponent {
 
-  content1 = example1;
+  content1 = `<p>A paragraph with <a href="https://ckeditor.com">some link</a>`;
   content2 = example2;
   content3 = example3;
 
