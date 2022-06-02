@@ -9,5 +9,8 @@ export class MentionCommand {
       const viewFragment = this.editor$.data.processor.toView( param.text );
       const modelFragment = this.editor$.data.toModel( viewFragment );
       this.editor$.model.insertContent( modelFragment, param.range);
+      this.editor$.model.change( (writer:any) => {
+        writer.setSelection( writer.createPositionAt( this.editor$.model.document.getRoot(), 'end' ) );
+      } );
   }
 }
