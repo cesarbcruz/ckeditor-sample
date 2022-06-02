@@ -32,11 +32,11 @@ export class AppComponent {
   itemsMention2: MentionModel[] = [
     {
       id: '@exemplo3',
-      text:'<strong>Exemplo 3<strong>',
+      text:'template exemplo 3',
     },
     {
       id: '@exemplo4',
-      text:'<strong>Exemplo 4<strong>',
+      text: example2,
     },
   ];
 
