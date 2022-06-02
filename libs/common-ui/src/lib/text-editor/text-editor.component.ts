@@ -1,5 +1,8 @@
 import { MentionModel } from './model/mention.model';
+import { MentionCommand } from './model/mention-command.model';
+
 import { MentionService } from './services/mention.service';
+
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
@@ -70,8 +73,15 @@ export class TextEditorComponent implements OnInit {
   }
 
   configureEvents() {
+
     this.Editor.model.document.on('change:data', () => {
       this.changeContent.emit(this.Editor.getData());
     });
+
+    this.Editor.commands.add('mention', new MentionCommand(this.Editor))
   }
+
 }
+
+
+
