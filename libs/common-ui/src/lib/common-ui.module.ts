@@ -1,12 +1,9 @@
-import { MentionService } from './text-editor/plugin/mention/mention.service';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TextEditorComponent } from './text-editor/text-editor.component';
+import { NgModule } from '@angular/core';
+import { TextEditorModule } from './text-editor/text-editor.module';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [TextEditorComponent],
-  exports: [TextEditorComponent],
-  providers: [MentionService],
+  imports: [TextEditorModule],
+  exports: [TextEditorComponent]
 })
 export class CommonUiModule {}

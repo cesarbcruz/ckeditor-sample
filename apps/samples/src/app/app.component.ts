@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { MentionModel } from 'libs/common-ui/src/lib/text-editor/plugin/mention/mention.model';
+import { MentionModel } from 'libs/common-ui/src/lib/text-editor/plugins/mention/mention.model';
 import example1 from './mock/ABD_Total'
 import example2 from './mock/Laudo_Ultrassom'
 import example3 from './mock/Word_COPY'
@@ -37,6 +37,17 @@ export class AppComponent {
     {
       id: '@exemplo4',
       text: example2,
+    },
+  ];
+
+  itemsMention3: MentionModel[] = [
+    {
+      id: '@XYZ',
+      text:'bla bla bla << teste >>',
+    },
+    {
+      id: '@ABC',
+      text: example3,
     },
   ];
 

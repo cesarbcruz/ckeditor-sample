@@ -1,17 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MentionModel } from './mention.model';
-import { Injectable } from '@angular/core';
+import { MentionCommand } from './mention-command';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class MentionService {
+export class MentionPlugin {
   private itemsMention: MentionModel[]=[];
 
-  setItems(itemsMention: MentionModel[]) {
+  constructor(itemsMention: MentionModel[]){
     this.itemsMention = itemsMention;
   }
 
-  getFeedItems(queryText: string) {
+  public getConfig(){
+    return {
+      feeds: [
+        {
+          marker: '@',
+          feed: this.getFeedItems.bind(this),
+        },
+      ],
+    }
+  }
+
+  private getFeedItems(queryText: string) {
+    console.log(this.itemsMention)
     return new Promise((resolve) => {
       setTimeout(() => {
         const itemsToDisplay = this.itemsMention
@@ -26,4 +36,9 @@ export class MentionService {
       return item.id.toLowerCase().includes(searchString);
     }
   }
+
+  public addCommand(editor:any){
+    editor.commands.add('mention', new MentionCommand(editor))
+  }
+
 }

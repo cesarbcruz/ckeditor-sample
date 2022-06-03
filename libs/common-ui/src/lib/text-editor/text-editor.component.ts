@@ -1,8 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MentionModel } from './plugin/mention/mention.model';
-import { MentionCommand } from './plugin/mention/mention-command';
-import { MentionService } from './plugin/mention/mention.service';
+import { MentionPlugin } from './plugins/mention/mention.plugin';
 
 import {
   Component,
@@ -12,7 +10,9 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+
 import * as Editor from '../../../../third/ckeditor5/build/ckeditor';
+import { MentionModel } from './plugins/mention/mention.model';
 
 @Component({
   selector: 'text-editor',
@@ -20,67 +20,47 @@ import * as Editor from '../../../../third/ckeditor5/build/ckeditor';
   styleUrls: ['./text-editor.component.less'],
 })
 export class TextEditorComponent implements OnInit {
-  @Input()
-  itemsMention: MentionModel[] = [];
-  @Input()
-  licenseKey = 'To5uX5zzBTbtyXnzqMnXKbYkPnAk8wwHE41JiXujwbMCsEiebiFhaodl6A==';
-  @Input()
-  content = '';
+  @Input() itemsMention: MentionModel[] = [];
+  @Input() licenseKey =
+    'To5uX5zzBTbtyXnzqMnXKbYkPnAk8wwHE41JiXujwbMCsEiebiFhaodl6A==';
+  @Input() content = '';
   @Output() changeContent = new EventEmitter<string>();
 
-  constructor(
-    private mentionService: MentionService,
-    private elementRef: ElementRef
-  ) {
-    mentionService.setItems(this.itemsMention);
-  }
+  private Editor: any;
+  private mention: MentionPlugin | undefined;
 
-  public Editor: any;
-  public config = {
-    licenseKey: this.licenseKey,
-    mention: {
-      feeds: [
-        {
-          marker: '@',
-          feed: this.mentionService.getFeedItems.bind(this),
-        },
-      ],
-    },
-  };
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    Editor.create(
-      this.elementRef.nativeElement.querySelector('.document-editor__editable'),
-      this.config
-    )
+    this.mention = new MentionPlugin(this.itemsMention);
+    this.create()
       .then((editor: any) => {
-        const toolbarContainer = this.elementRef.nativeElement.querySelector(
-          '.document-editor__toolbar'
-        );
-        if (toolbarContainer)
-          toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-
-        this.Editor = editor;
-
-        this.Editor.setData(this.content);
-
-        this.configureEvents();
+        this.configure(editor);
       })
       .catch((err: any) => {
         console.error(err);
       });
   }
 
-  configureEvents() {
-
-    this.Editor.model.document.on('change:data', () => {
-      this.changeContent.emit(this.Editor.getData());
-    });
-
-    this.Editor.commands.add('mention', new MentionCommand(this.Editor))
+  private create() {
+    return Editor.create(
+      this.elementRef.nativeElement.querySelector('.document-editor__editable'),
+      {
+        licenseKey: this.licenseKey,
+        mention: this.mention?.getConfig(),
+      }
+    );
   }
 
+  private configure(instanceEditor: any) {
+    const toolbarContainer = this.elementRef.nativeElement.querySelector(
+      '.document-editor__toolbar'
+    );
+    if (toolbarContainer)
+      toolbarContainer.appendChild(instanceEditor.ui.view.toolbar.element);
+
+    this.Editor = instanceEditor;
+    this.Editor.setData(this.content);
+    this.mention?.addCommand(this.Editor);
+  }
 }
-
-
-
