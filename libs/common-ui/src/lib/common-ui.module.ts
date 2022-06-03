@@ -4,6 +4,6 @@ import { TextEditorModule } from './text-editor/text-editor.module';
 
 @NgModule({
   imports: [TextEditorModule],
-  exports: [TextEditorComponent]
+  exports: [TextEditorComponent],
 })
 export class CommonUiModule {}

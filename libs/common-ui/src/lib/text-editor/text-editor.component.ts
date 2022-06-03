@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MentionPlugin } from './plugins/mention/mention.plugin';
 
+
+
 import {
   Component,
   ElementRef,
@@ -48,11 +50,17 @@ export class TextEditorComponent implements OnInit {
       {
         licenseKey: this.licenseKey,
         mention: this.mention?.getConfig(),
+        sidebar: {
+          container: this.elementRef.nativeElement.querySelector( '#sidebar' )
+        }
       }
     );
   }
 
   private configure(instanceEditor: any) {
+
+
+
     const toolbarContainer = this.elementRef.nativeElement.querySelector(
       '.document-editor__toolbar'
     );
@@ -60,7 +68,18 @@ export class TextEditorComponent implements OnInit {
       toolbarContainer.appendChild(instanceEditor.ui.view.toolbar.element);
 
     this.Editor = instanceEditor;
+
     this.Editor.setData(this.content);
+
+    this.Editor.model.document.on('change:data', () => {
+      this.changeContent.emit(this.Editor.getDataPlainText());
+    });
+
     this.mention?.addCommand(this.Editor);
   }
+
+  selectkeyWord(keyword:string){
+    this.Editor.execute( 'find', keyword );
+  }
+
 }

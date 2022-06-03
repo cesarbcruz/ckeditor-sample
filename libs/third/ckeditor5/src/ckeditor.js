@@ -54,9 +54,16 @@ import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
 import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import Mention from '@ckeditor/ckeditor5-mention/src/mention';
+import viewToPlainText from '@ckeditor/ckeditor5-clipboard/src/utils/viewtoplaintext';
 
 
-class Editor extends DecoupledDocumentEditor { }
+class Editor extends DecoupledDocumentEditor {
+
+  getDataPlainText(){
+    return viewToPlainText(this.editing.view.document.getRoot())
+  }
+
+ }
 
 
 // Plugins to include in the build.

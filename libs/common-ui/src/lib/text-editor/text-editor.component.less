@@ -5,6 +5,8 @@
   /* Set vertical boundaries for the document editor. */
   max-height: 700px;
 
+  width: 80%;
+
   /* This element is a flex container for easier rendering. */
   display: flex;
   flex-flow: column nowrap;
@@ -127,4 +129,16 @@ Preserve the relative scale, though. */
   font-family: Georgia, serif;
   margin-left: calc( 2 * var(--ck-spacing-large) );
   margin-right: calc( 2 * var(--ck-spacing-large) );
+}
+
+#container {
+  display: flex;
+  position: relative;
+}
+
+#sidebar {
+  min-width: 300px;
+  padding: 0 10px;
+  border: 1px solid var(--ck-color-base-border);
+  border-radius: var(--ck-border-radius);
 }

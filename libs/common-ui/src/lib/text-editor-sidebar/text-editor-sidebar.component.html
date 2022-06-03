@@ -1,0 +1,4 @@
+<div *ngFor="let keyword of keywords">
+  <label>{{getLabel(keyword)}}</label>
+  <input [id]="keyword" (focus)="select(keyword)" placeholder="name">
+</div>
