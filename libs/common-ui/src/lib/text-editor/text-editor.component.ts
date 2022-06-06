@@ -58,9 +58,6 @@ export class TextEditorComponent implements OnInit {
   }
 
   private configure(instanceEditor: any) {
-
-
-
     const toolbarContainer = this.elementRef.nativeElement.querySelector(
       '.document-editor__toolbar'
     );
