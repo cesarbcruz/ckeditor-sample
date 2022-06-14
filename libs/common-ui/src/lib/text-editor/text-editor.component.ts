@@ -50,6 +50,25 @@ export class TextEditorComponent implements OnInit {
       {
         licenseKey: this.licenseKey,
         mention: this.mention?.getConfig(),
+        typing: {
+          transformations: {
+              remove: [
+                  'symbols',
+                  'quotes',
+                  'arrowLeft',
+                  'arrowRight'
+              ],
+              extra: [
+                  { from: ':)', to: '🙂' },
+                  { from: ':+1:', to: '👍' },
+                  { from: ':tada:', to: '🎉' },
+                  {
+                      from: /(^|\s)(")([^"]*)(")$/,
+                      to: [ null, '<div>', null, '</div>' ]
+                  },
+              ],
+          }
+        },
         sidebar: {
           container: this.elementRef.nativeElement.querySelector( '#sidebar' )
         }
