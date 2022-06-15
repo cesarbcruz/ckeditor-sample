@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { MentionModel } from 'libs/common-ui/src/lib/text-editor/plugins/mention/mention.model';
 import example1 from './mock/ABD_Total'
 import example2 from './mock/Laudo_Ultrassom'
-import example3 from './mock/Word_COPY'
 
 
 @Component({
@@ -16,7 +15,6 @@ export class AppComponent {
 
   content1 = `<p>A paragraph with <a href="https://ckeditor.com">some link</a>`;
   content2 = example2;
-  content3 = example3;
 
   itemsMention: MentionModel[] = [
     {
@@ -44,11 +42,7 @@ export class AppComponent {
     {
       id: '@XYZ',
       text:'bla bla bla << teste >>',
-    },
-    {
-      id: '@ABC',
-      text: example3,
-    },
+    }
   ];
 
   changeContent(event:unknown){
